@@ -36,12 +36,13 @@ void liberarMemoria(Alumno *inicio);
 int main()
 {
     Alumno inicio = NULL; //Se inicializa el puntero o cabecera "inicio"   
+    insertarOrdenado(&inicio, crearNodo("Acierno", "Hernandez", "Deco"));
 //crear 5 instancias de estructuras Alumno
 //crear la lista con las 5 instancias de Alumno
 //insertar de forma ordenada de acuerdo al número de créditos (descendente)
 //imprimir la lista
 
-liberarMemoria(&inicio);
+    liberarMemoria(&inicio);
 }
 
 //Primera versión Nodo
@@ -66,7 +67,19 @@ void imprimirLista(Alumno inicio) {
 		actual = actual->siguiente;
 	}
 }
-
+void insertarOrdenado(NodoPtr *inicio, Alumno nuevoAlumno,{ //Version NO definitiva de insertarOrdenado
+    if (*inicio == NULL || strcmp(nuevoAlumno->NombreCompleto, (*inicio)->NombreCompleto) < 0) { //Se lee strcmp para la cadena de caracteres
+        nuevoAlumno->siguiente = *inicio;
+        *inicio = nuevoAlumno;
+        return;
+    }
+    NodoPtr actual = *inicio;
+    while (actual->siguiente != NULL && strcmp(nuevoAlumno->NombreCompleto, actual->siguiente->NombreCompleto) > 0) { //Se compara strcmp para la cadena de caracteres
+        actual = actual->siguiente;
+    }
+    nuevoAlumno->siguiente = actual->siguiente;
+    actual->siguiente = nuevoAlumno;
+}
 void liberarMemoria(Alumno *inicio) {
     while (*inicio != NULL) {
         Alumno temp = *inicio;
