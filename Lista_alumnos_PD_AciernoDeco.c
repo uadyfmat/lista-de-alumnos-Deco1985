@@ -36,11 +36,13 @@ void liberarMemoria(Alumno *inicio);
 int main()
 {
     Alumno inicio = NULL; //Se inicializa el puntero o cabecera "inicio"   
-    insertarOrdenado(&inicio, crearNodo("Acierno", "Hernandez", "Deco"));
-//crear 5 instancias de estructuras Alumno
-//crear la lista con las 5 instancias de Alumno
-//insertar de forma ordenada de acuerdo al número de créditos (descendente)
-//imprimir la lista
+    insertarOrdenado(&inicio, crearNodo("Acierno Hernandez Deco", 60, 3)); //primera prueba
+    imprimirAlumno(inicio);
+
+            //crear 5 instancias de estructuras Alumno
+            //crear la lista con las 5 instancias de Alumno
+            //insertar de forma ordenada de acuerdo al número de créditos (descendente)
+            //imprimir la lista
 
     liberarMemoria(&inicio);
 }
